@@ -22,7 +22,7 @@ RUN pnpm --filter server db:generate && pnpm --filter server build
 # ── Production deploy bundle (prod deps only, no lockfile --prod conflict) ───
 FROM deps AS prod-deploy
 COPY server ./server
-RUN pnpm --filter server deploy --prod /prod && \
+RUN pnpm --filter server deploy --prod --legacy /prod && \
     cd /prod && node_modules/.bin/prisma generate
 
 # ── Production runtime ────────────────────────────────────────────────────────
